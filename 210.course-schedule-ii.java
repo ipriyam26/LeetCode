@@ -1,13 +1,22 @@
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Stack;
+import java.util.Arrays;
+import java.util.function.IntFunction;
 
+/*
+ * @lc app=leetcode id=210 lang=java
+ *
+ * [210] Course Schedule II
+ */
+
+// @lc code=start
 class Solution {
 
     boolean[] inStack;
     boolean[] visited;
+    ArrayList<Integer> order = new ArrayList<Integer>();
 
     public HashMap<Integer, ArrayList<Integer>> makeAdjacencyList(int[][] pre, int numCourses) {
+
         HashMap<Integer, ArrayList<Integer>> adj = new HashMap<Integer, ArrayList<Integer>>();
 
         for (int i = 0; i < numCourses; i++) {
@@ -37,6 +46,7 @@ class Solution {
                 return false;
             }
         }
+        order.add(start);
         inStack[start] = false;
 
         return true;
@@ -57,15 +67,21 @@ class Solution {
         return true;
     }
 
-    public boolean canFinish(int numCourses, int[][] prerequisites) {
-        if (numCourses == 1 || numCourses == 0)
-            return true;
-        if (prerequisites.length == 0)
-            return true;
-
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
         inStack = new boolean[numCourses];
         visited = new boolean[numCourses];
-        return iterateMap(makeAdjacencyList(prerequisites, numCourses));
-    }
+        int[] arr = new int[numCourses];
+        if (numCourses == 0) {
+            return arr;
+        }
 
+        if (!iterateMap(makeAdjacencyList(prerequisites, numCourses))) {
+            return new int[0];
+        }
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = order.get(i);
+        }
+        return arr;
+    }
 }
+// @lc code=end

@@ -1,4 +1,7 @@
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -32,16 +35,36 @@ class Node {
 */
 
 class Solution {
-    public Node cloneGraph(Node node) {
-        Queue<Node> holder = new LinkedList<Node>();
-        holder.add(node);
-        while (!holder.isEmpty()) {
-            Node current = holder.poll();
-            for (Node node2 : current.neighbors) {
-                
-            }
+
+    public void dfs(Node current, Map<Integer, Node> hmac) {
+
+        if (hmac.containsKey(current.val)) {
+            return;
         }
+        Node parent = new Node(current.val);
+        hmac.put(parent.val, parent);
+        for (Node neighbor : current.neighbors) {
+            dfs(neighbor, hmac);
+            Node child = hmac.get(neighbor.val);
+            parent.neighbors.add(child);
+        }
+
+    }
+
+    public Node cloneGraph(Node node) {
+        Map<Integer, Node> hmac = new HashMap<Integer, Node>();
+
+        if (node == null) {
+            return null;
+        }
+        if (node.neighbors.size() == 0) {
+            return new Node(1);
+        }
+
+        dfs(node, hmac);
+        return hmac.get(1);
     }
 }
-// @lc code=end
 
+
+// @lc code=end
