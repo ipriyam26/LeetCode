@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 /*
  * @lc app=leetcode id=128 lang=java
  *
@@ -12,7 +15,7 @@ int[] size;
 int[] id;
 
     public UnionFind(int size){
-        this.size = size;
+
         this.id = new int[size];
         this.size = new int[size];
         for(int i = 0; i < size; i++){
@@ -63,12 +66,18 @@ int[] id;
 
     public int longestConsecutive(int[] nums) {
         UnionFind uf = new UnionFind(nums.length);
-        for(int i = 0; i < nums.length; i++){
-            for(int j = i + 1; j < nums.length; j++){
-                if(nums[i] + 1 == nums[j]){
-                    uf.union(i, j);
-                }
+        Map<Integer,Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if(map.containsKey(nums[i])){
+                continue;
             }
+            if(map.containsKey(nums[i] - 1)){
+                uf.union(i, map.get(nums[i] - 1));
+            }
+            if(map.containsKey(nums[i] + 1)){
+                uf.union(i, map.get(nums[i] + 1));
+            }
+            map.put(nums[i], i);
         }
         return uf.findLargestComponent();
         

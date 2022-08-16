@@ -1,14 +1,11 @@
-
-
 /*
- * @lc app=leetcode id=684 lang=java
+ * @lc app=leetcode id=130 lang=java
  *
- * [684] Redundant Connection
+ * [130] Surrounded Regions
  */
 
 // @lc code=start
 class Solution {
-
     class UnionFind{
     int[] size;
     int[] id;
@@ -51,6 +48,9 @@ class Solution {
                 size[rootY] += size[rootX];
             }
         }
+        public boolean connected(int x, int y){
+            return find(x) == find(y);
+        }
         public int findLargestComponent(){
             int max = 0;
             for(int i = 0; i < size.length; i++){
@@ -58,28 +58,46 @@ class Solution {
             }
             return max;
         }
-        public boolean isConnected(int x,int y){
-            return find(x)==find(y);
-        }
     
     
     }
+    public void solve(char[][] board) {
+        int n = board.length;
+        int m = board[0].length;
+        UnionFind UF = new UnionFind(n*m+1);
 
-    public int[] findRedundantConnection(int[][] edges) {
+      for (int i = 0; i < n; i++) {
+          for (int j = 0; j < m; j++) {
+              if(j==0||j==m-1||i==0||i==n-1){
+                  UF.union(i*m+j, n*m);
+              }
+              else if(board[i][j]=='O'){
+                  if(board[i-1][j]=='O'){
+                      UF.union((i-1)*m+j,    i*m+j);
+                  }
+                  if(board[i+1][j]=='O'){
+                      UF.union((i+1)*m+j,i*m+j );
+                  }
+                  if(board[i][j-1]=='O'){
+                      UF.union(i*m+(j-1), i*m+j);
+                  }
+                  if(board[i][j+1]=='O'){
+                      UF.union(i*m+(j+1), i*m+j);
+                  }
+              }
+          }
+      }
 
-      
-       UnionFind uf = new UnionFind(edges.length+1);
-       for (int i = 0; i < edges.length; i++) {
-           if(uf.isConnected(edges[i][0], edges[i][1])){
-return edges[i];
-           }
-           else{
-               uf.union(edges[i][0], edges[i][1]);
-           }
-       }
-       return edges[0];
+      for (int i = 0; i < n; i++) {
+          for (int j = 0; j < m; j++) {
+              if(!UF.connected(i*m+j, n*m)){
+                  board[i][j] ='X';
+              }
+          }
+      }
 
+        
     }
 }
-
 // @lc code=end
+

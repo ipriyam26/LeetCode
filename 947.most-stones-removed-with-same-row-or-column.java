@@ -1,9 +1,9 @@
-
+import java.util.Arrays;
 
 /*
- * @lc app=leetcode id=684 lang=java
+ * @lc app=leetcode id=947 lang=java
  *
- * [684] Redundant Connection
+ * [947] Most Stones Removed with Same Row or Column
  */
 
 // @lc code=start
@@ -12,14 +12,16 @@ class Solution {
     class UnionFind{
     int[] size;
     int[] id;
+    int count;
     
         public UnionFind(int size){
             this.id = new int[size];
             this.size = new int[size];
             for(int i = 0; i < size; i++){
                 this.id[i] = i;
-                this.size[i] = 1;
+                this.size[i] = 0;
             }
+            this.count =size;
         }
     
         public  int find(int x){
@@ -50,36 +52,38 @@ class Solution {
                 id[rootX] = rootY;
                 size[rootY] += size[rootX];
             }
+            this.count--;
         }
-        public int findLargestComponent(){
-            int max = 0;
-            for(int i = 0; i < size.length; i++){
-                max = Math.max(max, size[i]);
-            }
-            return max;
+        public int getNumberOfComponents(){
+            return this.count;
         }
-        public boolean isConnected(int x,int y){
-            return find(x)==find(y);
-        }
+       
     
     
     }
+    private boolean isConnected(int[] p1, int[] p2){
+        return p1[0] == p2[0] || p1[1] == p2[1];
+    }
+    public int removeStones(int[][] stones) {
 
-    public int[] findRedundantConnection(int[][] edges) {
+        int n = stones.length;
+        UnionFind uf = new UnionFind(n);
 
-      
-       UnionFind uf = new UnionFind(edges.length+1);
-       for (int i = 0; i < edges.length; i++) {
-           if(uf.isConnected(edges[i][0], edges[i][1])){
-return edges[i];
-           }
-           else{
-               uf.union(edges[i][0], edges[i][1]);
-           }
-       }
-       return edges[0];
 
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (isConnected(stones[i], stones[j]))
+                    uf.union(i, j);
+            }
+        }
+        return n - uf.getNumberOfComponents();
+
+
+
+
+
+        
     }
 }
-
 // @lc code=end
+
