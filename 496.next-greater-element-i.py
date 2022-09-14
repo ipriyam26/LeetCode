@@ -9,32 +9,33 @@ from typing import List
 
 
 class Solution:
+    
+    
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        ngr = self.find_NGR(nums2)
+        return [ ngr[nums2.index(num)] for num in nums1 ]
+
+    def find_NGR(self,arr:List[int])-> List[int]:
         stack = []
-        ans = {}
-        nums2.reverse()
-        for num in nums2:
+        res = []
+        i =len(arr)-1
+        while i>=0:
             if not stack:
-                ans[num] = -1
-            while stack and num >= stack[-1]:
-                stack.pop()
-            ans[num] = stack[-1] if stack else -1
-            stack.append(num)
-        return [ans[n] for n in nums1]
-            
-            
-                
-                
-            
-            
-            
-
-            
-            
-                
-            
-
-            
+                res.append(-1)
+            elif (stack[-1] >arr[i]):
+                res.append(stack[-1])
+            else:
+                while stack and stack[-1]<arr[i]:
+                    stack.pop()
+                if not stack:
+                    res.append(-1)
+                else:
+                    res.append(stack[-1])
+            stack.append(arr[i])
+            i-=1
+        res.reverse()
+        return res
+         
 
         
 # @lc code=end
