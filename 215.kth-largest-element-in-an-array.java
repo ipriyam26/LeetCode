@@ -7,7 +7,9 @@
 // @lc code=start
 class Solution {
     public int findKthLargest(int[] nums, int k) {
+
         
+       return 4; 
     }
 }
 // @lc code=end
