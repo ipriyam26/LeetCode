@@ -23,7 +23,7 @@ class Solution:
         for element in simple_arr:
             heapq.heappush(max_heap,element)
             if(len(max_heap)>k):
-                heapq.heappop(max_heap)
+                print(heapq.heappop(max_heap))
         ans = []
         while max_heap:
             ans.insert(0,arr[heapq.heappop(max_heap).index])
