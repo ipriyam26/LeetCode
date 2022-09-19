@@ -18,9 +18,9 @@ class Solution:
                 heapq.heappop(max_heap)
         ans = []
         while max_heap:
-            ans.append(heapq.heappop(max_heap)+x)
+            ans.insert(0,heapq.heappop(max_heap)+x)
         
-        
+        return ans
         
         
         
