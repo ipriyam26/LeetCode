@@ -15,7 +15,7 @@ class Solution:
             self.value=value
             self.index = index
         def __lt__(self,other):
-            return self.value<other.value
+            return self.value>other.value
             
     def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
         arr.reverse()
