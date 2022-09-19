@@ -26,7 +26,7 @@ class Solution:
                 heapq.heappop(max_heap)
         ans = []
         while max_heap:
-            ans.insert(0,heapq.heappop(max_heap).value)
+            ans.insert(0,arr[heapq.heappop(max_heap).index])
         
         return ans
         
