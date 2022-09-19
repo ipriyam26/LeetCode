@@ -18,6 +18,7 @@ class Solution:
             return self.value<other.value
             
     def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
+        arr.reverse()
         simple_arr = [self.Pair(abs(element-x)*-1,i) for i,element in enumerate(arr)]
         max_heap = []
         for element in simple_arr:
