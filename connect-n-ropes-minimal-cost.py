@@ -12,10 +12,10 @@ class Solution:
             pooped = heappop(price)
             pooped2 = heappop(price)
             cost+=pooped+pooped2
-            print(cost)
-            print(price)
+            # print(cost)
+            # print(price)
             heappush(price,pooped+pooped2)
-            print(f"after push {price}")
+            # print(f"after push {price}")
         # cost+=price[0] 
         print(cost)
             
