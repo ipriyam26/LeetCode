@@ -29,12 +29,12 @@ class Solution:
             heappush(holder,(0,item,count))
         time=0
         while holder:
-            time+=1
             pooped = heappop(holder)
             # print(pooped)
             time = max(time, pooped[0])
             print(holder)
             print(f"Time {time}")
+            time+=1
             if pooped[2]>1:
                 heappush(holder,(time+n,pooped[1],pooped[2]-1))
         return time
