@@ -12,6 +12,8 @@ class Solution:
             pooped = heappop(price)
             pooped2 = heappop(price)
             cost+=pooped+pooped2
+            print(cost)
+            print(price)
             heappush(price,cost)
         cost+=price[0] 
         print(cost)
