@@ -34,7 +34,7 @@ class Solution:
             # print(pooped)
             time = max(time, pooped[0])
             print(holder)
-            if pooped[2]>=1:
+            if pooped[2]>1:
                 heappush(holder,(time+n,pooped[1],pooped[2]-1))
         return time
                 
