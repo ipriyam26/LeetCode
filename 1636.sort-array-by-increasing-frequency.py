@@ -33,14 +33,15 @@ class Solution:
         return hash_map
     
     def frequencySort(self, nums: List[int]) -> List[int]:
-        frequency_count = self.make_frequency_map(nums)
-        ans = []
-        for value,count in frequency_count.items():
-            heapq.heappush(ans,Pair(count=count,value=value))
-        result = []
-        while ans:
-            result.append(heapq.heappop(ans).value)
-        return result
+       frequency_count = self.make_frequency_map(nums)
+       ans = []
+       for value,count in frequency_count.items():
+           heapq.heappush(ans,Pair(count=count,value=value))
+       result = []
+       while ans:
+          pooped:Pair = heapq.heappop(ans)
+          result.extend(pooped.value for _ in range(pooped.count))
+       return result
         
 
         
