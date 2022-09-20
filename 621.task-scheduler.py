@@ -24,19 +24,18 @@ class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         freq:Dict[str,int] = self.make_frequency_map(tasks)
         holder = []
-        print(freq)
+        # print(freq)
         for item,count in freq.items():
             heappush(holder,(0,item,count))
         time=0
         while holder:
             time+=1
             pooped = heappop(holder)
-            print(pooped)
+            # print(pooped)
             time = max(time, pooped[0])
-            if count<=1:
-                continue
-            print(time)
-            heappush(holder,(time+n,pooped[1],pooped[2]-1))
+            print(holder)
+            if count>=1:
+                heappush(holder,(time+n,pooped[1],pooped[2]-1))
         return time
                 
             
