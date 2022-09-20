@@ -15,7 +15,7 @@ class Solution:
         for dimensions in points:
             x,y = dimensions
             heapq.heappush(distance,(-1*(x*x+y*y)**0.5,dimensions))
-            if len(distance):
+            if len(distance)>k:
                 heapq.heappop(distance)
         result = []
         while distance:
