@@ -17,16 +17,16 @@ from typing import List, Optional
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         holder = []
-        for node in lists:
-            heappush(holder,(node.val,node))
+        for i,node in enumerate(lists):
+            heappush(holder,(node.val,i,node))
         head = ListNode()
         temp = head   
         while holder:
             pooped = heappop(holder)
-            temp.next = pooped[1]
+            temp.next = pooped[2]
             temp=temp.next
             if temp.next:
-                heappush(holder,(temp.next.val,temp.next))
+                heappush(holder,(temp.next.val,pooped[1],temp.next))
         return head.next
             
             
