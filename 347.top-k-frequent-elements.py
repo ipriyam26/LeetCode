@@ -11,14 +11,16 @@ import heapq
 class Solution:
     
     def make_frequency_map(self,nums: List[int]):
-        hash = {}
+        hash_map = {}
         for num in nums:
-            if num in hash:
-                hash[num]+=1
+            if num in hash_map:
+                hash_map[num]+=1
             else:
-                hash[num]=1
+                hash_map[num]=1
+        return hash_map
     
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        print(self.make_frequency_map(nums))
 
         
 # @lc code=end
