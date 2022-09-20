@@ -23,7 +23,7 @@ class Solution:
         frequency_count = self.make_frequency_map(nums)
         ans = []
         for key,value in frequency_count.items():
-            heapq.heappush((value,key),ans)
+            heapq.heappush(ans,(value,key))
             if len(ans)>k:
                 heapq.heappop(ans)
         result = []
