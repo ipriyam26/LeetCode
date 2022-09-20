@@ -20,7 +20,17 @@ class Solution:
         return hash_map
     
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        print(self.make_frequency_map(nums))
+        frequency_count = self.make_frequency_map(nums)
+        ans = []
+        for key,value in frequency_count.items():
+            heapq.heappush((value,key),ans)
+            if len(ans)>k:
+                heapq.heappop(ans)
+        result = []
+        for left_overs in ans:
+            result.insert(0,left_overs[1])
+        return result
+            
 
         
 # @lc code=end
