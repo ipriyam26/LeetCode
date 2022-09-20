@@ -10,7 +10,8 @@ class Solution:
         cost = 0
         while len(price)>1:
             pooped = heappop(price)
-            cost+=pooped
+            pooped2 = heappop(price)
+            cost+=pooped+pooped2
             heappush(price,cost)
         cost+=price[0] 
         print(cost)
