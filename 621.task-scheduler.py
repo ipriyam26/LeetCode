@@ -34,7 +34,7 @@ class Solution:
                 time=pooped
             if count<=1:
                 continue
-            heappush(holder,(time+n,item,count-1))
+            heappush(holder,(time+n,pooped[1],pooped[2]-1))
         return time
                 
             
