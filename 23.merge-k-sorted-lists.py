@@ -16,9 +16,12 @@ from typing import List, Optional
 
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if not lists:
+            return None
         holder = []
         for i,node in enumerate(lists):
-            heappush(holder,(node.val,i,node))
+            if node:
+                heappush(holder,(node.val,i,node))
         head = ListNode()
         temp = head   
         while holder:
