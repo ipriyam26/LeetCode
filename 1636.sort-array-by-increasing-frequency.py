@@ -19,7 +19,7 @@ class Pair:
        elif self.count>other.count:
            return False
        else:
-           return self.count>other.count 
+           return self.count<other.count 
 
 class Solution:
     
