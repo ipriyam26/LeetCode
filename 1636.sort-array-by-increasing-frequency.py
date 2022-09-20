@@ -6,7 +6,7 @@
 
 # @lc code=start
 from dataclasses import dataclass
-from typing import List
+from typing import Dict, List
 import heapq
 
 @dataclass
@@ -23,8 +23,24 @@ class Pair:
 
 class Solution:
     
+    def make_frequency_map(self,nums: List[int])-> Dict[int,int]:
+        hash_map = {}
+        for num in nums:
+            if num in hash_map:
+                hash_map[num]+=1
+            else:
+                hash_map[num]=1
+        return hash_map
     
     def frequencySort(self, nums: List[int]) -> List[int]:
+        frequency_count = self.make_frequency_map(nums)
+        ans = []
+        for value,count in frequency_count.items():
+            heapq.heappush(ans,Pair(count=count,value=value))
+        result = []
+        while ans:
+            result.append(heapq.heappop(ans).value)
+        return result
         
 
         
