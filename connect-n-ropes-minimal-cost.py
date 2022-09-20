@@ -16,7 +16,7 @@ class Solution:
             print(price)
             heappush(price,pooped+pooped2)
             print(f"after push {price}")
-        cost+=price[0] 
+        # cost+=price[0] 
         print(cost)
             
         #code here
