@@ -8,6 +8,17 @@
 from typing import List
 import heapq
 
+class Pair:
+        def __init__(self,count,value) -> None:
+            self.count = count
+            self.value = value
+        def __lt__(self,other):
+            if self.count<other.count:
+                return True
+            elif self.count>other.count:
+                return False
+            else:
+                return self.value<other.value
 class Solution:
     
     def make_frequency_map(self,nums: List[int]):
@@ -21,14 +32,14 @@ class Solution:
     
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         frequency_count = self.make_frequency_map(nums)
-        ans = []
+        ans:List[Pair] = []
         for key,value in frequency_count.items():
-            heapq.heappush(ans,(value,key))
+            heapq.heappush(ans,Pair(count=value,value=key))
             if len(ans)>k:
                 heapq.heappop(ans)
         result = []
         for left_overs in ans:
-            result.insert(0,left_overs[1])
+            result.insert(0,left_overs.value)
         return result
             
 
