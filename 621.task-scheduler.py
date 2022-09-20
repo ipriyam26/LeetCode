@@ -35,6 +35,7 @@ class Solution:
             time = max(time, pooped[0])
             if count<=1:
                 continue
+            print(time)
             heappush(holder,(time+n,pooped[1],pooped[2]-1))
         return time
                 
