@@ -1,6 +1,6 @@
 #User function Template for python3
 
-from heapq import heapify, heappop
+from heapq import heapify, heappop, heappush
 from typing import List
 
 
@@ -8,9 +8,12 @@ class Solution:
     def cutRod(self, price:List[int], n):
         heapify(price)
         cost = 0
-        while price:
+        while len(price)>1:
             pooped = heappop(price)
-            print(pooped)
+            cost+=pooped
+            heappush(price,cost)
+        cost+=price[0] 
+        print(cost)
             
         #code here
         
