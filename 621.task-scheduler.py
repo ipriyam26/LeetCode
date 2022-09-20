@@ -30,8 +30,7 @@ class Solution:
         while holder:
             time+=1
             pooped = heappop(holder)
-            if time<pooped[0]:
-                time=pooped
+            time = max(time, pooped[0])
             if count<=1:
                 continue
             heappush(holder,(time+n,pooped[1],pooped[2]-1))
