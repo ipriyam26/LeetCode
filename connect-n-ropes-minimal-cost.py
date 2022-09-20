@@ -14,7 +14,7 @@ class Solution:
             cost+=pooped+pooped2
             print(cost)
             print(price)
-            heappush(price,cost)
+            heappush(price,pooped+pooped2)
         cost+=price[0] 
         print(cost)
             
