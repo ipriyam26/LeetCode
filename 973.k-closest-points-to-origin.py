@@ -20,7 +20,7 @@ class Solution:
         result = []
         while distance:
             pooped = heapq.heappop(distance)[1]
-            result.index(0,pooped)
+            result.insert(0,pooped)
         return result
             
             
