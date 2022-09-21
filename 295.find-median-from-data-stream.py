@@ -43,7 +43,7 @@ class MedianFinder:
         
 
     def findMedian(self) -> float:
-        mid = len(self.values)//2+1
+        mid = (len(self.values)-1)//2+1
         if self.is_odd:
             print(self.values[mid])
             return self.values[mid]
