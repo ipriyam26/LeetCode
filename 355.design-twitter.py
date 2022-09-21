@@ -50,7 +50,11 @@ class Twitter:
             if len(min_heap)>10:
                 heapq.heappop(min_heap)
             print(min_heap)
-        min_heap.sort(reverse=True)
+            
+        ans = []
+        while min_heap:
+            pooped = heapq.heappop(min_heap)
+            ans.index(0,pooped[1])
         self.time+=1
         return min_heap
     
