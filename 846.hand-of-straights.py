@@ -43,7 +43,9 @@ class Solution:
                 if pooped[1]>1:
                     buffer.append((pooped[0],pooped[1]-1))
                 prev = pooped[0]
-            print(holder)
+                print(pooped)
+            print('-'*30)
+            
             for item in buffer:
                 heapq.heappush(holder,item)
 
