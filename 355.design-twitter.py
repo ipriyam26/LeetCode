@@ -35,7 +35,7 @@ class Twitter:
     def getNewsFeed(self, userId: int) -> List[int]:
         valid_tweets = []
         following_list=[]
-        following_list = self.follow_list[userId]
+        following_list = self.follow_list[userId].copy()
         following_list.append(userId)
         print(f"Original temp {self.follow_list[userId]}")
         print(f"Following {following_list} for {userId}")
