@@ -41,6 +41,8 @@ class Solution:
                 prev = pooped[0]
             for item in buffer:
                 heapq.heappush(holder,item)
+
+        return True
                 
                 
         
