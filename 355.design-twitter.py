@@ -8,15 +8,27 @@
 class Twitter:
 
     def __init__(self):
+        #{'userID':followed}
+        self.followed = {}
+        self.tweets = {}
+        
+        
+
         
 
     def postTweet(self, userId: int, tweetId: int) -> None:
+        if userId in self.tweets.keys():
+            self.tweets[userId].append(tweetId)
+        else:
+            self.tweets[userId] = [tweetId]
+    
+    def follow(self, followerId: int, followeeId: int) -> None:
+        
         
 
     def getNewsFeed(self, userId: int) -> List[int]:
         
 
-    def follow(self, followerId: int, followeeId: int) -> None:
         
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
