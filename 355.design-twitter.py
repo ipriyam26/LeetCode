@@ -34,9 +34,10 @@ class Twitter:
 
     def getNewsFeed(self, userId: int) -> List[int]:
         valid_tweets = []
+        following_list=[]
         following_list = self.follow_list[userId]
         following_list.append(userId)
-        print(f"Following {following_list}")
+        print(f"Following {following_list} for {userId}")
         for followers in following_list:
             valid_tweets.extend(self.tweets[followers])
         min_heap = []
