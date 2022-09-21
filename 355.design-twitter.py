@@ -43,6 +43,7 @@ class Twitter:
             heapq.heappush(min_heap,tweet)
             if len(min_heap)>10:
                 heapq.heappop(min_heap)
+            print(min_heap)
         min_heap.sort(reverse=True)
         return min_heap
     
