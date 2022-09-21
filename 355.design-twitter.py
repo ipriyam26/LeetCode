@@ -36,6 +36,7 @@ class Twitter:
         valid_tweets = []
         following_list = self.follow_list[userId]
         following_list.append(userId)
+        print(f"Following {following_list}")
         for followers in following_list:
             valid_tweets.extend(self.tweets[followers])
         min_heap = []
