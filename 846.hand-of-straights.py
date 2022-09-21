@@ -29,7 +29,20 @@ class Solution:
         for value,count in freq_list.items():
             heapq.heappush(holder,(value,count))
         
-        
+        while holder:
+            buffer = []
+            prev = 0
+            for _ in range(groupSize):
+                pooped = heapq.heappop(holder)
+                if prev!=0 and prev+1!=pooped[0]:
+                    return False
+                if pooped[1]>1:
+                    buffer.append((pooped[0],pooped[1]-1))
+                prev = pooped[0]
+            for item in buffer:
+                heapq.heappush(holder,item)
+                
+                
         
 # @lc code=end
 
