@@ -9,7 +9,7 @@ class Twitter:
 
     def __init__(self):
         #{'userID':followed}
-        self.followed = {}
+        self.follow_list = {}
         self.tweets = {}
         
         
@@ -23,6 +23,10 @@ class Twitter:
             self.tweets[userId] = [tweetId]
     
     def follow(self, followerId: int, followeeId: int) -> None:
+        if followeeId in self.follow_list.keys():
+            self.follow_list[followeeId].append(followerId)
+        else:
+            self.tweets[followeeId] = [followeeId]
         
         
 
