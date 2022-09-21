@@ -48,6 +48,7 @@ class MedianFinder:
             print(self.values[mid])
             return self.values[mid]
         mid_1 = mid-1
+        print(mid,mid_1)
         vv = (self.values[mid]+self.values[mid_1])/2
         print(vv)
         return vv
