@@ -13,7 +13,6 @@ class MedianFinder:
     def __init__(self):
         self.is_odd = None
         self.values = []
-        self.median_index = 0
     
     def _find_right_place_to_insert(self,nums:List[int],num:int)  :
         high = len(nums)-1
@@ -31,10 +30,25 @@ class MedianFinder:
                 
 
     def addNum(self, num: int) -> None:
+        if not self.values:
+            self.values.append(num)
+            self.is_odd = True
+            return
+        i = self._find_right_place_to_insert(self.values,num)
+        self.is_odd = not self.is_odd
+        self.values.insert(i,num)
+        
+        
         
         
 
     def findMedian(self) -> float:
+        mid = len(self.values)//2+1
+        if self.is_odd:
+            return self.values[mid]
+        mid_1 = mid-1
+        return (self.values[mid]+self.values[mid_1])/2
+        
         
 
 
