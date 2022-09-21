@@ -32,13 +32,18 @@ class Solution:
         while holder:
             buffer = []
             prev = 0
+
             for _ in range(groupSize):
-                pooped = heapq.heappop(holder)
+                try:
+                    pooped = heapq.heappop(holder)
+                except:
+                    return False
                 if prev!=0 and prev+1!=pooped[0]:
                     return False
                 if pooped[1]>1:
                     buffer.append((pooped[0],pooped[1]-1))
                 prev = pooped[0]
+
             for item in buffer:
                 heapq.heappush(holder,item)
 
