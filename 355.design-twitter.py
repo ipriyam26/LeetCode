@@ -5,32 +5,40 @@
 #
 
 # @lc code=start
+from collections import defaultdict
+
+from typing import Dict, List
+
+
 class Twitter:
 
     def __init__(self):
         #{'userID':followed}
-        self.follow_list = {}
-        self.tweets = {}
+        self.follow_list :Dict[int,List[int]]= defaultdict(list)
+        self.tweets:Dict[int,List[int]] = defaultdict(list)
         
         
 
         
 
     def postTweet(self, userId: int, tweetId: int) -> None:
-        if userId in self.tweets.keys():
-            self.tweets[userId].append(tweetId)
-        else:
-            self.tweets[userId] = [tweetId]
+        self.tweets[userId].append(tweetId)
+
     
     def follow(self, followerId: int, followeeId: int) -> None:
-        if followeeId in self.follow_list.keys():
+        if followerId not in self.follow_list[followeeId]:
             self.follow_list[followeeId].append(followerId)
-        else:
-            self.tweets[followeeId] = [followeeId]
         
         
 
     def getNewsFeed(self, userId: int) -> List[int]:
+        valid_tweets = []
+        following_list = self.follow_list[userId]
+        following_list.append(userId)
+        for followers in following_list:
+            valid_tweets.extend(self.tweets[followers])
+        
+        
         
 
         
