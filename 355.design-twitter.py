@@ -17,18 +17,21 @@ class Twitter:
         #{'userID':followed}
         self.follow_list :Dict[int,List[int]]= defaultdict(list)
         self.tweets:Dict[int,List[int]] = defaultdict(list)
+        self.time = 0
         
         
 
         
 
     def postTweet(self, userId: int, tweetId: int) -> None:
-        self.tweets[userId].append(tweetId)
+        self.tweets[userId].append((self.time,tweetId))
+        self.time+=1
 
     
     def follow(self, followerId: int, followeeId: int) -> None:
         if followeeId not in self.follow_list[followerId]:
             self.follow_list[followerId].append(followeeId)
+        self.time+=1
         
         
 
@@ -48,6 +51,7 @@ class Twitter:
                 heapq.heappop(min_heap)
             print(min_heap)
         min_heap.sort(reverse=True)
+        self.time+=1
         return min_heap
     
         
@@ -60,6 +64,7 @@ class Twitter:
     def unfollow(self, followerId: int, followeeId: int) -> None:
         if followeeId in self.follow_list[followerId]:
             self.follow_list[followerId].remove(followeeId)
+        self.time+=1
         
 
 
