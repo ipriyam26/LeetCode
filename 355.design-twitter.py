@@ -27,8 +27,8 @@ class Twitter:
 
     
     def follow(self, followerId: int, followeeId: int) -> None:
-        if followerId not in self.follow_list[followeeId]:
-            self.follow_list[followeeId].append(followerId)
+        if followeeId not in self.follow_list[followerId]:
+            self.follow_list[followerId].append(followeeId)
         
         
 
@@ -57,8 +57,8 @@ class Twitter:
         
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
-        if followerId in self.follow_list[followeeId]:
-            self.follow_list[followeeId].remove(followerId)
+        if followeeId in self.follow_list[followerId]:
+            self.follow_list[followerId].remove(followeeId)
         
 
 
