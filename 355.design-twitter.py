@@ -6,6 +6,7 @@
 
 # @lc code=start
 from collections import defaultdict
+import heapq
 
 from typing import Dict, List
 
@@ -37,6 +38,15 @@ class Twitter:
         following_list.append(userId)
         for followers in following_list:
             valid_tweets.extend(self.tweets[followers])
+        min_heap = []
+        for tweet in valid_tweets:
+            heapq.heappush(min_heap,tweet)
+            if len(min_heap)>10:
+                heapq.heappop(min_heap)
+        min_heap.sort(reverse=True)
+        return min_heap
+    
+        
         
         
         
@@ -44,6 +54,8 @@ class Twitter:
         
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
+        if followerId in self.follow_list[followeeId]:
+            self.follow_list[followeeId].remove(followerId)
         
 
 
