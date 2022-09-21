@@ -37,6 +37,7 @@ class Twitter:
         following_list=[]
         following_list = self.follow_list[userId]
         following_list.append(userId)
+        print(f"Original temp {self.follow_list[userId]}")
         print(f"Following {following_list} for {userId}")
         for followers in following_list:
             valid_tweets.extend(self.tweets[followers])
