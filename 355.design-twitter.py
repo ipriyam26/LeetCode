@@ -54,9 +54,9 @@ class Twitter:
         ans = []
         while min_heap:
             pooped = heapq.heappop(min_heap)
-            ans.index(0,pooped[1])
+            ans.insert(0,pooped[1])
         self.time+=1
-        return min_heap
+        return ans
     
         
         
