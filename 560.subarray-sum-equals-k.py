@@ -5,8 +5,12 @@
 #
 
 # @lc code=start
+from typing import List
+
+
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
+        
         
 # @lc code=end
 
