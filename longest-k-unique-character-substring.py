@@ -13,16 +13,22 @@ class Solution:
         i,j=0,0
         while j <len(s):
             holder[s[j]]+=1
-            unique_count =j-i
-            if(len(holder)<k):
-                j+=1
+            unique_count =j-i+1
+            if (len(holder)<k):
+                pass
             elif (len(holder)==k):
                 if unique_count >max_count:
                     max_count = unique_count
-                j+=1
             else:
                 #remove elements till unique are 3
-                
+                while len(holder)>k and i<j:
+                    holder[i]-=1
+                    if(holder[i]==0):
+                        holder.pop(i)
+                    unique_count-=1
+                    i+=1
+
+            j+=1
             
                 
             
