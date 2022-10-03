@@ -19,13 +19,13 @@ class Solution:
             holder[s[j]]+=1
             # if len(holder)<=k:
             #     pass
-            if len(holder) <= k + 1 and max_count < j - i + 1:
+            tbc = sum(holder.values()) - max(holder.values())
+            if tbc<=k and max_count < j - i + 1:
                 max_count=j-i+1
-            elif(len(holder)>k+1):
-                while len(holder)>k+1:
-                    holder[s[i]]-=1
-                    if(holder[s[i]]==0):
-                        holder.pop(s[i])
+            elif(tbc>k):
+                while tbc>k and i<j:
+                    
+                        
                     i+=1
             j+=1
 
