@@ -27,7 +27,7 @@ class Solution:
             #             holder.pop(s[i])  
             #         i+=1
             # j+=1
-            if(s[j] in holder and holder[j]>i):
+            if(s[j] in holder and holder[s[j]]>i):
                 i = holder[j]
             elif j-i+1 > max_value:
                 max_value=j-i+1
