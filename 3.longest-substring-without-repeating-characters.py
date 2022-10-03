@@ -6,14 +6,15 @@
 
 # @lc code=start
 from collections import defaultdict
-from email.policy import default
 
 
 class Solution:
+    def default_fill():
+        return 0
     def lengthOfLongestSubstring(self, s: str) -> int:
         i,j = 0,0
         max_value = 0
-        holder = defaultdict(lambda _:0)
+        holder = defaultdict(self.default_fill)
         while j <len(s):
             holder[s[j]]+=1
             if (j-i+1==len(holder)):
