@@ -28,7 +28,7 @@ class Solution:
             #         i+=1
             # j+=1
             if(s[j] in holder and holder[s[j]]>i):
-                i = holder[j]
+                i = holder[s[j]]
             elif j-i+1 > max_value:
                 max_value=j-i+1
             holder[s[j]]=j
