@@ -27,11 +27,11 @@ class Solution:
             #             holder.pop(s[i])  
             #         i+=1
             # j+=1
-            if(s[j] in holder and s[j]>i):
-                i = s[j]
+            if(s[j] in holder and holder[j]>i):
+                i = holder[j]
             elif j-i+1 > max_value:
                 max_value=j-i+1
-            s[j]=j
+            holder[j]=j
         return max_value
             
             
