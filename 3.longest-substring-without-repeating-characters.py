@@ -15,7 +15,7 @@ class Solution:
         max_value = 0
         holder = defaultdict(lambda _:0)
         while j <len(s):
-            holder.add(s[j])
+            holder[s[j]]+=1
             if (j-i+1==len(holder)):
                 if(j-i+1>max_value):
                     max_value = j-i+1
