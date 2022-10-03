@@ -17,10 +17,10 @@ class Solution:
             if(nums[j]==0):
                 zero_count+=1
                 
-            if (zero_count <= 2) and (max_count < j - i + 1):
+            if (zero_count <= k) and (max_count < j - i + 1):
                 max_count= j-i+1
-            elif(zero_count >2):
-                while zero_count>2 and i<j:
+            elif(zero_count >k):
+                while zero_count>k and i<j:
                     if(nums[i]==0) :
                         zero_count-=1
                     i+=1
