@@ -32,6 +32,7 @@ class Solution:
             elif j-i+1 > max_value:
                 max_value=j-i+1
             holder[j]=j
+            j+=1
         return max_value
             
             
