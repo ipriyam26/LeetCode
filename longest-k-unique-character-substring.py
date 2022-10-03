@@ -6,10 +6,15 @@ from collections import defaultdict
 
 class Solution:
 
+    def default_value(self):
+        return 0
+        
+    
     def longestKSubstr(self, s, k):
-        holder = defaultdict()
+        holder = defaultdict(self.default_value)
         unique_count = 0
         max_count = 0
+        max_string=0
         i,j=0,0
         while j <len(s):
             holder[s[j]]+=1
@@ -19,18 +24,19 @@ class Solution:
             elif (len(holder)==k):
                 if unique_count >max_count:
                     max_count = unique_count
+                    max_string = s[i:j+1]
             else:
                 #remove elements till unique are 3
                 while len(holder)>k and i<j:
-                    holder[i]-=1
-                    if(holder[i]==0):
-                        holder.pop(i)
-                    unique_count-=1
+                    holder[s[i]]-=1
+                    if(holder[s[i]]==0):
+                        holder.pop(s[i])
                     i+=1
 
             j+=1
-            
-                
+        # print(max_string)
+        # print(i,j)
+        return max_count or -1
             
         # code here
 
