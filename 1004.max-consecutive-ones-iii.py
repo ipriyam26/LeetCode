@@ -28,10 +28,10 @@ class Solution:
         
         return max_count
 
-if __name__=='__main__':
-    arr = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1]
-    k =3
-    print(Solution().longestOnes(arr,k))
+# if __name__=='__main__':
+#     arr = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1]
+#     k =3
+#     print(Solution().longestOnes(arr,k))
         
 # @lc code=end
 
