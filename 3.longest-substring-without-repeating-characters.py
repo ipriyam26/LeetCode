@@ -5,12 +5,9 @@
 #
 
 # @lc code=start
-from collections import defaultdict
 
 
 class Solution:
-    def default_fill(self):
-        return 0
     def lengthOfLongestSubstring(self, s: str) -> int:
         i,j = -1,0
         max_value = 0
