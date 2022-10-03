@@ -9,7 +9,7 @@ from collections import defaultdict
 
 
 class Solution:
-    def default_fill():
+    def default_fill(self):
         return 0
     def lengthOfLongestSubstring(self, s: str) -> int:
         i,j = 0,0
