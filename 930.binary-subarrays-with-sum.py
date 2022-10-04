@@ -33,8 +33,10 @@ class Solution:
         while i<j:
             if(nums[i]==1):
                 one-=1
-            if one==2:
+            if one==goal:
                 count+=1
+            # else
+            else: break
             i+=1
                 
         # print()
