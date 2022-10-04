@@ -28,6 +28,10 @@ class Solution:
             j+=1
         # print()
         return count
+
+if __name__ == '__main__':
+    res = Solution()
+    print(res.numSubarraysWithSum(nums=[1,0,1,0,1],goal=2))
     
                     
                 
