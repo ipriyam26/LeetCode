@@ -26,6 +26,8 @@ class Solution:
                     if nums[i]==1:
                         one-=1
                     i+=1
+                if one==goal:
+                    count+=1
             # j+=1
         # print()
         return count
