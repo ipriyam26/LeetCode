@@ -29,6 +29,14 @@ class Solution:
                 if one==goal:
                     count+=1
             j+=1
+            # if(j==len)
+        while i<j:
+            if(nums[i]==1):
+                one-=1
+            if one==2:
+                count+=1
+            i+=1
+                
         # print()
         return count
 
