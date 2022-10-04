@@ -44,7 +44,7 @@ class Solution:
 
 if __name__ == '__main__':
     res = Solution()
-    print(res.numSubarraysWithSum(nums=[1,0,1,0,1],goal=2))
+    print(res.numSubarraysWithSum(nums=[1,0,1,0,1],goal=0))
     
                     
                 
