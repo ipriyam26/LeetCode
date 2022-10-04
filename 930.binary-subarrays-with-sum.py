@@ -16,16 +16,17 @@ class Solution:
         while j <len(nums):
             if nums[j]==1:
                 one+=1
-            # if one<goal:
-            #     pass
+            if one<goal:
+                j+=1
             if one==goal:
                 count+=1
+                j+=1
             elif(one>goal):
                 while one>goal and i<j:
                     if nums[i]==1:
                         one-=1
                     i+=1
-            j+=1
+            # j+=1
         # print()
         return count
 
