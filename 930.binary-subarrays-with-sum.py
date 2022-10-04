@@ -5,45 +5,21 @@
 #
 
 # @lc code=start
+from collections import defaultdict
 from typing import List
 
 
 class Solution:
     def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
-        count = 0
-        i,j = 0,0
-        one = 0
-        while j <len(nums):
-            if nums[j]==1:
-                one+=1
-            # if one<goal:
-            #     j+=1
-            if one==goal:
-                count+=1
-            elif(one>goal):
-                while one>goal and i<j:
-                    if nums[i]==1:
-                        one-=1
-                    i+=1
-                if one==goal and i<j:
-                    count+=1
-            j+=1
-            # if(j==len)
-        while i<j:
-            if(nums[i]==1):
-                one-=1
-            if one==goal:
-                count+=1
-            # else
-            else: break
-            i+=1
-                
-        # print()
-        return count
-
-if __name__ == '__main__':
-    res = Solution()
-    print(res.numSubarraysWithSum(nums=[1,0,1,0,1],goal=0))
+            d = defaultdict(int)
+            d[0] = 1
+            prefix = ans = 0
+            for i in nums:
+                prefix += i
+                if(prefix - goal in d):
+                    ans += d[prefix - goal]
+                d[prefix] += 1
+            return ans
     
                     
                 
