@@ -11,26 +11,23 @@ from collections import defaultdict
 
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        i,j=0,0
-        max_count = 0
-        holder = defaultdict(int)
-        # count=0
-        while j < len(s):
-            holder[s[j]]+=1
-            # if len(holder)<=k:
-            #     pass
-            tbc = sum(holder.values()) - max(holder.values())
-            if tbc<=k and max_count < j - i + 1:
-                max_count=j-i+1
-            elif(tbc>k):
-                while tbc>k and i<j:
-                    
-                        
-                    i+=1
-            j+=1
+        L = 0
+        length = 0
+        hashmap = {s[0]: 1}
+        
+        for R in range(1, len(s)):
+            if s[R] in hashmap:
+                hashmap[s[R]] += 1
+            else:
+                hashmap[s[R]] = 1
 
-
-        return max_count
+            while sum(hashmap.values()) - max(hashmap.values()) > k:
+                hashmap[s[L]] -= 1
+                L += 1
+                
+            length = max(length, R - L + 1)
+            
+        return length
         
 # @lc code=end
 
