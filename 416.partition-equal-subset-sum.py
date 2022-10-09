@@ -5,26 +5,37 @@
 #
 
 # @lc code=start
+import itertools
 from typing import List
 
 
 
 class Solution:
-    def is_subset(self,N, sum,nums,total_sum):
-        if (N==0):
-            return sum == total_sum/2
-        if sum - nums[N-1] <total_sum/2:
-            return self.is_subset(N-1,sum,nums,total_sum=total_sum)
-        else:
-            return self.is_subset(N-1,sum,nums,total_sum=total_sum) or self.is_subset(N-1,sum-nums[N-1],total_sum=total_sum)
+    def subset_sum(self,sum_needed,n,wt):
+        dp = [[-1 for _ in range(sum_needed+1)] for _ in range(n+1)]
+        for i in range(sum_needed+1):
+            dp[0][i]= False
+        for i in range(n+1):
+            dp[i][0]=True
+        for i, j in itertools.product(range(1,n+1), range(1,sum_needed+1)):
+            dp[i][j] = dp[i-1][j] if j < wt[i-1] else dp[i-1][j] or dp[i-1][j-wt[i-1]]
+        return dp[n][sum_needed]
+
+             
         
-    def canPartition(self, nums: List[int]) -> bool:
-        
-        total_sum = sum(nums)
-        if total_sum %2==1:
+    def canPartition(self,arr:List[int]) -> bool:
+        sum_arr = sum(arr)
+        if int(sum_arr/2)!=sum_arr/2 or sum_arr%2==1:
             return False
-        else:
-            return self.is_subset(len(nums),0,nums,total_sum=total_sum)
+        if int(sum_arr/2) in arr:
+            return True
+        return self.subset_sum(int(sum_arr/2),len(arr),arr)
+
+        
+
+    
+if __name__ == '__main__':
+    print(Solution().canPartition([1,2,5,2]))
         
         
         
