@@ -17,7 +17,7 @@ class Solution:
         if word1[i]==word2[j]:
             return self.findMinium(i-1,j-1,word1=word1,word2=word2)
         else:
-            return  self.findMinium(i-1,j,word1=word1,word2=word2) , self.findMinium(i,j-1,word1=word1,wordword2)
+            return  self.findMinium(i-1,j,word1=word1,word2=word2) , self.findMinium(i,j-1,word1=word1,word2 = word2)
         
         
     
