@@ -7,22 +7,17 @@
 # @lc code=start
 class Solution:
     def numDistinct(self, s: str, t: str) -> int:
-        self.dp = [[-1 for _ in range(len(t)+1)] for _ in range(len(s)+1)]
-        return self.findDistinct(len(s)-1,len(t)-1,s,t)
-    
-    def findDistinct(self,i:int,j:int,s:str,t:str) -> int:
-        if j<0:
-            return 1
-        if i<0:
-            return 0
-        if self.dp[i][j]!=-1:
-            return self.dp[i][j]
-            
-        if s[i]==t[j]:
-            self.dp[i][j]= self.findDistinct(i-1,j-1,s,t) + self.findDistinct(i-1,j,s,t)
-        else:
-            self.dp[i][j]= self.findDistinct(i-1,j,s,t)
-        return self.dp[i][j]
+        n,m = len(s),len(t)
+        self.dp = [[0 for _ in range(m+1)] for _ in range(n+1)]
+        for i in range(n+1):
+            self.dp[i][0]=1 
+        for i in range(1,n+1):
+            for j in range(1,m+1):
+                if s[i-1]==t[j-1]:
+                    self.dp[i][j]= self.dp[i-1][j-1] + self.dp[i-1][j]
+                else:
+                    self.dp[i][j]=self.dp[i-1][j]
+        return self.dp[n][m]
 
         
         
