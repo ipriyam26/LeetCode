@@ -10,40 +10,41 @@ from typing import List
 
 class Solution:
 
-    def isSafe(self,row:int,col:int,board: List[List[str]],N:int):
-        
-        for item in board:
-            if item[col] == "Q":
-                return False
-
-        for i,j in zip(range(row,-1,-1),range(col,-1,-1)):
-            if board[i][j]=="Q":
-                return False
-
-        return all(board[i][j] != "Q" for i, j in zip(range(row,N), range(col,-1,-1)))
+    def isSafe(self,r:int,c:int,board: List[List[str]],n:int):
+            for i in range(n):
+                if board[i][c] == 'Q':
+                    return False
+                if r - i >= 0 and c - i >= 0 and board[r-i][c-i] == 'Q':
+                    return False
+                if r - i >= 0 and c + i < n and board[r-i][c+i] == 'Q':
+                    return False
+            return True
                
             
     
-    def findTruth(self,row:int,board: List[List[str]],n:int):
+    def findTruth(self,row:int,board: List[str],n:int):
         if row==n:
+            self.results.append(["".join(i) for i in board])
+            # print(board)
             return True
-        
+
+        temp = board[row]
         for col in range(n):
             
-            if not self.isSafe(row,col,board):
+            if not self.isSafe(row,col,board,n):
                 continue
-            
-            board[row][col] ='Q'
-            if self.findTruth(row+1,board):
-                return True
-            
-            board[row][col]="."
-        
+
+            board[row] = f"{board[row][:col]}Q{board[row][col + 1:]}"
+            self.findTruth(row+1,board,n)
+            board[row]=temp
+
         return False
     
     def solveNQueens(self, n: int) -> List[List[str]]:
-        
-        board:List[List[str]] = [["." for _ in range(n)] for _ in range(n)]
+        self.results = []
+        board:List[str] = ["."*n for _ in range(n)]
+        self.findTruth(0,board,n)
+        return self.results
         
         
         
