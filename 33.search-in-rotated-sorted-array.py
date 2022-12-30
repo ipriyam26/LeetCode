@@ -20,6 +20,8 @@ class Solution:
                 return mid
             elif mid>start and nums[mid]<nums[mid-1]:
                 return mid-1
+            
+            
             if nums[mid]<=nums[start]:
                 end = mid-1
             else:
