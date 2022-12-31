@@ -28,7 +28,7 @@ class Solution:
                 end = mid-1
             else:
                 start=mid+1
-        return -1
+        return -1P
    
     def findMin(self, nums: List[int]) -> int:
         n = len(nums)
