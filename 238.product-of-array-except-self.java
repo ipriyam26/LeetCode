@@ -25,6 +25,9 @@ class Solution {
         if(nums[i]==0 && zeroCount==1){
             result[i] = productIgnoringZeros;
         }
+        else if(zeroCount>1 && nums[i]==0){
+            result[i] =0;
+        }
         else{
             result[i] = product/nums[i];
         }
