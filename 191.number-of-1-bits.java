@@ -8,7 +8,8 @@
 public class Solution {
     // you need to treat n as an unsigned value
     public int hammingWeight(int n) {
-       int  
+       int count =0;
+       while(n) 
     }
 }
 // @lc code=end
