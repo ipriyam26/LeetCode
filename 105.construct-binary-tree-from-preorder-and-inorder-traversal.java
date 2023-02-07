@@ -29,43 +29,12 @@ import java.util.Queue;
  */
 class Solution {
 
-    Queue<Integer> pres = new LinkedList<Integer>();
-
-    public int findIndexOf(int[] arr, int search) {
-        int i = 0;
-        while (search != arr[i]) {
-            i++;
-        }
-        return i;
-    }
-    public TreeNode makeTree(int[] inorder) {
-        if (inorder.length == 1) {
-            return new TreeNode(pres.remove());
-        }
-
-
-        TreeNode root = new TreeNode(pres.remove());
-        int index = findIndexOf(inorder, root.val);
-       int[] left= Arrays.copyOfRange(inorder, 0, index);
-       if(left.length>0){
-
-           root.left = makeTree(left);
-       }
-        int[] right = Arrays.copyOfRange(inorder, index + 1, inorder.length);
-        if(right.length>0){
-
-            root.right = makeTree(right);
-        }
-        return root;
-
-    }
+   
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-for (int integer : preorder) {
-    pres.add(integer);
-}
-  
-        return makeTree(inorder);
+        if(inorder.length!=0){
+            int indexOfRoot = Arrays.indexof
+        }
     }
 }
 // @lc code=end
