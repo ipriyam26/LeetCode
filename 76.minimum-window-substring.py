@@ -10,43 +10,38 @@ from collections import Counter, defaultdict
 
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        # counter = Counter(t)
-        if len(t)>len(s):
+        if len(s) < len(t):
             return ""
-        if len(t)==1 and t in s:
-            return t
-        
-        hashDict = defaultdict(int)
-        for charr in t:
-            hashDict[charr]+=1
-        i,j=0,0
-        ans = len(s)
-        ansString = ""
-        count = len(hashDict)
-        while j <len(s):
-            if s[j] in hashDict:
-                hashDict[s[j]]-=1
-                if hashDict[s[j]]==0:
-                    count-=1
-            if count==0:
-                if ans > j-i+1:
-                    ans = j-i+1
-                    ansString = s[i:j+1]     
-                # run=0
-                while count==0 and i<j:
-                    # run=1
-                    if s[i] in hashDict:
-                        hashDict[s[i]]+=1
-                        if hashDict[s[i]]>0:
-                            count+=1
-                    i+=1
-                    
-                if ans > j-i:
-                    ans = j-i
-                    ansString = s[i-1:j+1]  
-            j+=1
-        #hurray
-        return ansString
+
+        needed_letters = Counter(t)
+        needed_len = len(t)
+        minimum_window = ""
+        start=0
+        for end in range(len(s)):
+            
+            if needed_letters[s[end]]   >0:
+                needed_len-=1
+            
+            needed_letters[s[end]]-=1
+            
+            while needed_len==0:
+                window_len = end-start+1
+                
+                if not minimum_window or window_len < len(minimum_window):
+                    minimum_window = s[start:end+1]
+                
+                needed_letters[s[start]]+=1
+                
+                if needed_letters[s[start]] > 0:
+                    needed_len+=1
+                start+=1
+                
+        return minimum_window
+                
+                
+                
+                
+            
                 
                     
                 
