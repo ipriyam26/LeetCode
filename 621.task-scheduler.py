@@ -5,44 +5,34 @@
 #
 
 # @lc code=start
-from heapq import heappop, heappush
+from heapq import heappop, heappush, heapify
 from typing import Dict, List
-
+from collections import Counter
 
 class Solution:
     
-    def make_frequency_map(self,nums: List[str]):
-        hash_map = {}
-        for num in nums:
-            if num in hash_map:
-                hash_map[num]+=1
-            else:
-                hash_map[num]=1
-        return hash_map
     
     
     def leastInterval(self, tasks: List[str], n: int) -> int:
-        freq:Dict[str,int] = self.make_frequency_map(tasks)
-        holder = []
-        # print(freq)
-        for item,count in freq.items():
-            heappush(holder,(0,item,count))
-        time=0
-        while holder:
-            pooped = heappop(holder)
-            # print(pooped)
-            time = max(time, pooped[0])
-            # print(holder)
-            print(f"Time {time}")
-            time+=1
-            if pooped[2]>1:
-                heappush(holder,(time+n,pooped[1],pooped[2]-1))
-                print(holder)
-        return time
-                
-            
+        if not tasks:
+            return 0
+        m = len(tasks)
+        
+        counter_all = Counter(tasks)
+        
+        counter = sorted(list(counter_all.values()),reverse=True)
+        
+        maximum = counter[0]-1
+        
+        maximum_spaces = maximum*n
         
 
-        
+        for item in counter[1:]:
+            maximum_spaces-= min(maximum,item)
+
+        return m + max(0,maximum_spaces)
+            
+            
+
 # @lc code=end
 
